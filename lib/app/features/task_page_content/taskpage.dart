@@ -13,10 +13,10 @@ class TaskPageContent extends StatelessWidget {
         CustomContainer(),
         CustomContainer(),
       ],
-    );
+    ); 
   }
 }
-
+ 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({
     super.key,

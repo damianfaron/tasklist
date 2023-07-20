@@ -41,8 +41,21 @@ class AddPageContent extends StatelessWidget {
               ),
             ),
           ),
-          TextField(),
-          Text('Dodaj zadanie do listy'),
+          // TextField(),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+              const Color.fromARGB(80, 150, 87, 87),
+            )),
+            onPressed: () {},
+            child: const Text(
+              'Dodaj',
+              style: TextStyle(color: Colors.black),
+            ),
+          )
         ],
       ),
     );

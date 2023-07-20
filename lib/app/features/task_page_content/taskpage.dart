@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class TaskPageContent extends StatelessWidget {
@@ -7,20 +8,48 @@ class TaskPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        CustomContainer(),
-        CustomContainer(),
-        CustomContainer(),
-      ],
-    ); 
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: FirebaseFirestore.instance.collection('task').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            // print('Error fetching data: ${snapshot.error}');
+            return const Center(child: Text('Coś poszło nie tak'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: Text('trwa ładowanie'));
+          }
+
+          final documents = snapshot.data!.docs;
+          return ListView(
+            children: [
+              for (final document in documents) ...[
+                CustomContainer(
+                  title: document['name'],
+                  description: document['description'],
+                )
+                // Text(document['name']),
+                // Text(document['description']),
+              ],
+              const Center(
+                child: Text('jeden'),
+              )
+            ],
+          );
+        });
   }
 }
- 
+
+
+// kontenerek 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({
+    required this.description,
+    required this.title,
     super.key,
   });
+
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +63,16 @@ class CustomContainer extends StatelessWidget {
             ], begin: Alignment.topCenter, end: Alignment.bottomRight),
             color: Colors.blueAccent,
             borderRadius: BorderRadius.circular(30)),
-        child: const Padding(
-          padding: EdgeInsets.all(12.0),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('tu zrobimy tytuł'),
-              Text('tu zrobimy opis pomysłu czy coś'),
+              Text(
+                title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(description),
             ],
           ),
         ),

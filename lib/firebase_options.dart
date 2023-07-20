@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDXuY8bUGxcbQenwpTTL9ORK6Nd97alaAo',
-    appId: '1:946521030:android:828ef7f1e205555bc428c7',
-    messagingSenderId: '946521030',
-    projectId: 'tasklist94',
-    storageBucket: 'tasklist94.appspot.com',
+    apiKey: 'AIzaSyD6-kanV9QK8Pp6v0A3tbx-clf5xDoap_s',
+    appId: '1:229884901409:android:50542139b50a0f5ab9cb60',
+    messagingSenderId: '229884901409',
+    projectId: 'tasklist2000',
+    storageBucket: 'tasklist2000.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDFdBxdh-KwbtT8dqRAZjAwep8-IaprakE',
-    appId: '1:946521030:ios:6f736468d31e68b6c428c7',
-    messagingSenderId: '946521030',
-    projectId: 'tasklist94',
-    storageBucket: 'tasklist94.appspot.com',
-    iosClientId: '946521030-09l4e3dbq4354d5vtauvge2trflt59e8.apps.googleusercontent.com',
+    apiKey: 'AIzaSyD6pzOk4uQ792FlPiTHt2brZSLGETGHkeA',
+    appId: '1:229884901409:ios:8fc64764b408f5d9b9cb60',
+    messagingSenderId: '229884901409',
+    projectId: 'tasklist2000',
+    storageBucket: 'tasklist2000.appspot.com',
+    iosClientId: '229884901409-o712k2fr50p743cj2okjbr7a9nkrig9s.apps.googleusercontent.com',
     iosBundleId: 'com.damianfaron.tasklist',
   );
 }

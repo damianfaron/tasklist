@@ -8,7 +8,7 @@
 PRODUCT_NAME = tasklist
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.tasklist
+PRODUCT_BUNDLE_IDENTIFIER = com.damianfaron.tasklist
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.damianfaron. All rights reserved.

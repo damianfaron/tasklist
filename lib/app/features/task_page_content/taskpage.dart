@@ -11,6 +11,7 @@ class TaskPageContent extends StatelessWidget {
       children: const [
         CustomContainer(),
         CustomContainer(),
+        CustomContainer(),
       ],
     );
   }

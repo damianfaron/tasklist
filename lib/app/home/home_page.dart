@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tasklist/app/features/add_page_content/add_page.dart';
 import 'package:tasklist/app/features/task_page_content/taskpage.dart';
@@ -19,11 +18,27 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-            child: Text(
-          'Lista Zadań',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        )),
+        title: Builder(builder: (context) {
+          if (currentIndex == 1) {
+            return const Center(
+                child: Text(
+              'Dodaj zadanie',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ));
+          }
+          if (currentIndex == 2) {
+            return const Center(
+                child: Text(
+              'Twój profil',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ));
+          }
+          return const Center(
+              child: Text(
+            'Lista Zadań',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ));
+        }),
       ),
       body: Builder(builder: (context) {
         if (currentIndex == 1) {

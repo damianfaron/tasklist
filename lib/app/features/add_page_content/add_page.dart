@@ -1,9 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AddPageContent extends StatelessWidget {
+class AddPageContent extends StatefulWidget {
   const AddPageContent({
     super.key,
   });
+
+  @override
+  State<AddPageContent> createState() => _AddPageContentState();
+}
+
+class _AddPageContentState extends State<AddPageContent> {
+  var taskName = '';
+  var descriptionTask = '';
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +22,11 @@ class AddPageContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
+            onChanged: (newValue) {
+              setState(() {
+                taskName = newValue;
+              });
+            },
             maxLines: null,
             decoration: InputDecoration(
               labelText: 'Nazwa zadania',
@@ -29,6 +43,11 @@ class AddPageContent extends StatelessWidget {
             height: 20,
           ),
           TextField(
+            onChanged: (newValue) {
+              setState(() {
+                descriptionTask = newValue;
+              });
+            },
             maxLines: null,
             decoration: InputDecoration(
               labelText: 'Opis zadania',
@@ -50,7 +69,12 @@ class AddPageContent extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all(
               const Color.fromARGB(80, 150, 87, 87),
             )),
-            onPressed: () {},
+            onPressed: () {
+              FirebaseFirestore.instance.collection('task').add({
+                'name': taskName,
+                'description': descriptionTask,
+              });
+            },
             child: const Text(
               'Dodaj',
               style: TextStyle(color: Colors.black),

@@ -27,20 +27,14 @@ class TaskPageContent extends StatelessWidget {
                   title: document['name'],
                   description: document['description'],
                 )
-                // Text(document['name']),
-                // Text(document['description']),
               ],
-              const Center(
-                child: Text('jeden'),
-              )
             ],
           );
         });
   }
 }
 
-
-// kontenerek 
+// kontenerek
 class CustomContainer extends StatelessWidget {
   const CustomContainer({
     required this.description,

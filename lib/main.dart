@@ -41,6 +41,21 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         )),
       ),
+      body: Builder(builder: (context) {
+        if (currentIndex == 1) {
+          return const Center(
+            child: Text('Dodaj zadanie do listy'),
+          );
+        }
+        if (currentIndex == 2) {
+          return const Center(
+            child: Text('Tutaj stworzysz kiedyś profil użytkownika'),
+          );
+        }
+        return const Center(
+          child: Text('Lista tu będzie'),
+        );
+      }),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: (newValue) {

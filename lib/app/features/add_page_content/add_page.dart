@@ -69,12 +69,14 @@ class _AddPageContentState extends State<AddPageContent> {
                 backgroundColor: MaterialStateProperty.all(
               const Color.fromARGB(80, 150, 87, 87),
             )),
-            onPressed: () {
-              FirebaseFirestore.instance.collection('task').add({
-                'name': taskName,
-                'description': descriptionTask,
-              });
-            },
+            onPressed: taskName.isEmpty || descriptionTask.isEmpty
+                ? null
+                : () {
+                    FirebaseFirestore.instance.collection('task').add({
+                      'name': taskName,
+                      'description': descriptionTask,
+                    });
+                  },
             child: const Text(
               'Dodaj',
               style: TextStyle(color: Colors.black),

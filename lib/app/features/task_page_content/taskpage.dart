@@ -25,6 +25,21 @@ class TaskPageContent extends StatelessWidget {
               for (final document in documents) ...[
                 Dismissible(
                   key: ValueKey(document.id),
+                  background: const DecoratedBox(
+                    decoration: BoxDecoration(color: Colors.red),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Icon(Icons.delete),
+                      ),
+                    ),
+                  ),
+                  confirmDismiss: (direction) async {
+                    //możesz usunąć tylko przez swipe od prawej do lewej
+
+                    return direction == DismissDirection.endToStart;
+                  },
                   onDismissed: (_) {
                     FirebaseFirestore.instance
                         .collection('task')

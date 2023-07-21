@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
 
 class TaskPageContent extends StatelessWidget {
   const TaskPageContent({
@@ -24,7 +25,7 @@ class TaskPageContent extends StatelessWidget {
           if (documents.isEmpty) {
             return const Center(
               child: Text(
-                'Nie dodałeś zadania, przejdź poniżej do zakładki dodaj, aby dodać i wyswietlić zadania na ekrania',
+                'Nie dodałeś zadania. Przejdź poniżej do zakładki dodaj, aby dodać i wyświetlić zadania na ekranie.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w100),
               ),
@@ -35,9 +36,11 @@ class TaskPageContent extends StatelessWidget {
               for (final document in documents) ...[
                 Dismissible(
                   key: ValueKey(document.id),
-                  background: const DecoratedBox(
-                    decoration: BoxDecoration(color: Colors.red),
-                    child: Align(
+                  background: DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(30)),
+                    child: const Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
                         padding: EdgeInsets.all(20.0),
@@ -47,7 +50,6 @@ class TaskPageContent extends StatelessWidget {
                   ),
                   confirmDismiss: (direction) async {
                     //możesz usunąć tylko przez swipe od prawej do lewej
-
                     return direction == DismissDirection.endToStart;
                   },
                   onDismissed: (_) {
@@ -85,12 +87,13 @@ class CustomContainer extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Container(
         decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [
-              Color.fromARGB(80, 150, 87, 87),
-              Color.fromARGB(58, 218, 14, 14)
-            ], begin: Alignment.topCenter, end: Alignment.bottomRight),
-            color: Colors.blueAccent,
-            borderRadius: BorderRadius.circular(30)),
+          gradient: const LinearGradient(colors: [
+            AppColors.navColor,
+            AppColors.navColor2,
+          ], begin: Alignment.topCenter, end: Alignment.bottomRight),
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.black, width: 1.5),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -98,9 +101,15 @@ class CustomContainer extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              Text(description),
+              const SizedBox(height: 10),
+              Text(
+                description,
+                // rozciągnij tekst opisu
+                // textAlign: TextAlign.justify,
+              ),
             ],
           ),
         ),

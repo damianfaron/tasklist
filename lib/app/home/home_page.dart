@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasklist/app/features/add_page_content/add_page.dart';
-import 'package:tasklist/app/features/presentatnio/colors/app_colors.dart';
+import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
 import 'package:tasklist/app/features/task_page_content/taskpage.dart';
 import 'package:tasklist/app/features/user_page_content/user_page.dart';
 
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Strona Główna',
+            label: 'Zadania',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),

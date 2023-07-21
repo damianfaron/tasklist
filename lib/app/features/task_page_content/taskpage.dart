@@ -20,6 +20,16 @@ class TaskPageContent extends StatelessWidget {
           }
 
           final documents = snapshot.data!.docs;
+
+          if (documents.isEmpty) {
+            return const Center(
+              child: Text(
+                'Nie dodałeś zadania, przejdź poniżej do zakładki dodaj, aby dodać i wyswietlić zadania na ekrania',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w100),
+              ),
+            );
+          }
           return ListView(
             children: [
               for (final document in documents) ...[

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasklist/app/features/add_page_content/add_page.dart';
+import 'package:tasklist/app/features/presentatnio/colors/app_colors.dart';
 import 'package:tasklist/app/features/task_page_content/taskpage.dart';
 import 'package:tasklist/app/features/user_page_content/user_page.dart';
 
@@ -17,7 +18,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.mainColor,
       appBar: AppBar(
+        backgroundColor: AppColors.mainColor,
         title: Builder(builder: (context) {
           if (currentIndex == 1) {
             return const Center(
@@ -54,26 +57,31 @@ class _HomePageState extends State<HomePage> {
         return const TaskPageContent();
       }),
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: (newValue) {
-            setState(() {
-              currentIndex = newValue;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Strona Główna',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              label: 'Dodaj',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined),
-              label: 'Profil',
-            )
-          ]),
+        //wyłączanie kreski nad przyciskiem
+        // elevation: 0.0,
+        backgroundColor: AppColors.mainColor,
+        currentIndex: currentIndex,
+        onTap: (newValue) {
+          setState(() {
+            currentIndex = newValue;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Strona Główna',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Dodaj',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_outlined),
+            label: 'Profil',
+          )
+        ],
+        selectedItemColor: AppColors.blackColor,
+      ),
     );
   }
 }

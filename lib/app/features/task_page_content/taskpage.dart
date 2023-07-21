@@ -25,6 +25,12 @@ class TaskPageContent extends StatelessWidget {
               for (final document in documents) ...[
                 Dismissible(
                   key: ValueKey(document.id),
+                  onDismissed: (_) {
+                    FirebaseFirestore.instance
+                        .collection('task')
+                        .doc(document.id)
+                        .delete();
+                  },
                   child: CustomContainer(
                     title: document['name'],
                     description: document['description'],

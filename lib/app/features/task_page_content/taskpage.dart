@@ -23,9 +23,12 @@ class TaskPageContent extends StatelessWidget {
           return ListView(
             children: [
               for (final document in documents) ...[
-                CustomContainer(
-                  title: document['name'],
-                  description: document['description'],
+                Dismissible(
+                  key: ValueKey(document.id),
+                  child: CustomContainer(
+                    title: document['name'],
+                    description: document['description'],
+                  ),
                 )
               ],
             ],

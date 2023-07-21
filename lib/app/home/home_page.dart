@@ -42,7 +42,11 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Builder(builder: (context) {
         if (currentIndex == 1) {
-          return const AddPageContent();
+          return AddPageContent(onSave: () {
+            setState(() {
+              currentIndex = 0;
+            });
+          });
         }
         if (currentIndex == 2) {
           return const UserPageContent();

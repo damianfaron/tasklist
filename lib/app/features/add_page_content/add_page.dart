@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
+    required this.onSave,
     super.key,
   });
+
+  final Function onSave;
 
   @override
   State<AddPageContent> createState() => _AddPageContentState();
@@ -76,6 +79,7 @@ class _AddPageContentState extends State<AddPageContent> {
                       'name': taskName,
                       'description': descriptionTask,
                     });
+                    widget.onSave();
                   },
             child: const Text(
               'Dodaj',

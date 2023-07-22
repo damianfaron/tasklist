@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class UserPageContent extends StatelessWidget {
@@ -8,8 +7,18 @@ class UserPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Tutaj stworzysz kiedyś profil użytkownika'),
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(
+          backgroundImage: AssetImage('images/ONX.jpg'),
+          radius: 100,
+        ),
+        SizedBox(height: 40),
+        Center(
+          child: Text('Tutaj stworzysz kiedyś profil użytkownika'),
+        ),
+      ],
     );
   }
 }

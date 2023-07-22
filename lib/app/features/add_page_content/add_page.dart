@@ -28,9 +28,11 @@ class _AddPageContentState extends State<AddPageContent> {
         children: [
           TextField(
             onChanged: (newValue) {
-              setState(() {
-                taskName = newValue;
-              });
+              setState(
+                () {
+                  taskName = newValue;
+                },
+              );
             },
             maxLines: null,
             decoration: InputDecoration(
@@ -49,9 +51,11 @@ class _AddPageContentState extends State<AddPageContent> {
           ),
           TextField(
             onChanged: (newValue) {
-              setState(() {
-                descriptionTask = newValue;
-              });
+              setState(
+                () {
+                  descriptionTask = newValue;
+                },
+              );
             },
             maxLines: null,
             decoration: InputDecoration(
@@ -65,15 +69,15 @@ class _AddPageContentState extends State<AddPageContent> {
               ),
             ),
           ),
-          // TextField(),
           const SizedBox(
             height: 20,
           ),
           ElevatedButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
-              AppColors.lineColor,
-            )),
+              backgroundColor: MaterialStateProperty.all(
+                AppColors.lineColor,
+              ),
+            ),
             onPressed: taskName.isEmpty || descriptionTask.isEmpty
                 ? null
                 : () {

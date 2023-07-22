@@ -52,7 +52,11 @@ class TaskCubit extends Cubit<TaskState> {
           .doc(documentId)
           .delete();
     } catch (error) {
-      emit(state);
+      emit(TaskState(
+        documents: const [],
+        errorMessage: error.toString(),
+        isLoading: false,
+      ));
     }
   }
 

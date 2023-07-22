@@ -16,7 +16,7 @@ class UserPageContent extends StatelessWidget {
         ),
         SizedBox(height: 40),
         Center(
-          child: Text('Tutaj stworzysz kiedyś profil użytkownika'),
+          child: Text('Tutaj będzie profil użytkownika'),
         ),
       ],
     );

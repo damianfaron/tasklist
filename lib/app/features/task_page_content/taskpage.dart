@@ -16,10 +16,14 @@ class TaskPageContent extends StatelessWidget {
       child: BlocBuilder<TaskCubit, TaskState>(
         builder: (context, state) {
           if (state.errorMessage.isNotEmpty) {
-            return const Center(child: Text('Coś poszło nie tak'));
+            return const Center(
+              child: Text('Coś poszło nie tak'),
+            );
           }
           if (state.isLoading == true) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
 
           final documents = state.documents;
@@ -51,14 +55,10 @@ class TaskPageContent extends StatelessWidget {
                     ),
                   ),
                   confirmDismiss: (direction) async {
-                    //możesz usunąć tylko przez swipe od prawej do lewej
-                    // return direction == DismissDirection.endToStart;
-                    // okno dialogowe z zapytaniem o usunięcie
                     return await showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
                         backgroundColor: AppColors.mainColor,
-                        // title: const Text('Chcesz usunąć ?'),
                         content: const Text(
                           'Czy napewno chcesz usunąć?',
                           textAlign: TextAlign.center,

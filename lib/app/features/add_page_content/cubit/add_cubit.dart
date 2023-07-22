@@ -10,13 +10,17 @@ class AddCubit extends Cubit<AddState> {
   Future<void> add(String taskName, String descriptionTask) async {
     try {
       emit(const AddState(errorMessage: ''));
-      await FirebaseFirestore.instance.collection('task').add({
-        'name': taskName,
-        'description': descriptionTask,
-      });
+      await FirebaseFirestore.instance.collection('task').add(
+        {
+          'name': taskName,
+          'description': descriptionTask,
+        },
+      );
       emit(const AddState(errorMessage: ''));
     } catch (error) {
-      emit(AddState(errorMessage: error.toString()));
+      emit(
+        AddState(errorMessage: error.toString()),
+      );
     }
   }
 }

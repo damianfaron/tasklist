@@ -37,8 +37,6 @@ class CustomContainer extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 description,
-                // rozciągnij tekst opisu
-                // textAlign: TextAlign.justify,
               ),
             ],
           ),

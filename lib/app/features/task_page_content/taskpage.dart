@@ -1,4 +1,3 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
@@ -41,7 +40,7 @@ class TaskPageContent extends StatelessWidget {
                   key: ValueKey(document.id),
                   background: DecoratedBox(
                     decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: AppColors.redColor,
                         borderRadius: BorderRadius.circular(30)),
                     child: const Align(
                       alignment: Alignment.centerRight,
@@ -56,51 +55,51 @@ class TaskPageContent extends StatelessWidget {
                     // return direction == DismissDirection.endToStart;
                     // okno dialogowe z zapytaniem o usunięcie
                     return await showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                              backgroundColor: AppColors.mainColor,
-                              // title: const Text('Chcesz usunąć ?'),
-                              content: const Text('Czy napewno chcesz usunąć?',
-                                  textAlign: TextAlign.center,
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        backgroundColor: AppColors.mainColor,
+                        // title: const Text('Chcesz usunąć ?'),
+                        content: const Text(
+                          'Czy napewno chcesz usunąć?',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.blackColor),
+                        ),
+                        actions: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, false);
+                                },
+                                child: const Text(
+                                  'Nie',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: AppColors.blackColor)),
-                              actions: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context, false);
-                                      },
-                                      child: const Text(
-                                        'Nie',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.blackColor),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context, true);
-                                      },
-                                      child: const Text('Tak',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.blackColor)),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ));
+                                      color: AppColors.blackColor),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, true);
+                                },
+                                child: const Text(
+                                  'Tak',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.blackColor),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    );
                   },
                   onDismissed: (_) {
                     context.read<TaskCubit>().deleteDocument(document.id);
-                    // FirebaseFirestore.instance
-                    //     .collection('task')
-                    //     .doc(document.id)
-                    //     .delete();
                   },
                   child: CustomContainer(
                     title: document['name'],

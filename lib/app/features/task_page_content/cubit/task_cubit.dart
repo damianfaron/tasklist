@@ -25,6 +25,7 @@ class TaskCubit extends Cubit<TaskState> {
     );
     _streamSubscription = FirebaseFirestore.instance
         .collection('task')
+        .orderBy('name')
         .snapshots()
         .listen((data) {
       emit(
@@ -54,8 +55,6 @@ class TaskCubit extends Cubit<TaskState> {
       emit(state);
     }
   }
-
-
 
   @override
   Future<void> close() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasklist/app/features/add_page_content/cubit/add_cubit.dart';
+import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
 
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
@@ -37,7 +38,7 @@ class _AddPageContentState extends State<AddPageContent> {
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   width: 3,
-                  color: Color.fromARGB(80, 150, 87, 87),
+                  color: AppColors.lineColor,
                 ),
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -58,7 +59,7 @@ class _AddPageContentState extends State<AddPageContent> {
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   width: 3,
-                  color: Color.fromARGB(80, 150, 87, 87),
+                  color: AppColors.lineColor,
                 ),
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -71,16 +72,12 @@ class _AddPageContentState extends State<AddPageContent> {
           ElevatedButton(
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
-              const Color.fromARGB(80, 150, 87, 87),
+              AppColors.lineColor,
             )),
             onPressed: taskName.isEmpty || descriptionTask.isEmpty
                 ? null
                 : () {
                     context.read<AddCubit>().add(taskName, descriptionTask);
-                    // FirebaseFirestore.instance.collection('task').add({
-                    //   'name': taskName,
-                    //   'description': descriptionTask,
-                    // });
                     widget.onSave();
                   },
             child: const Text(

@@ -23,27 +23,32 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: AppColors.mainColor,
       appBar: AppBar(
         backgroundColor: AppColors.mainColor,
-        title: Builder(builder: (context) {
-          if (currentIndex == 1) {
-            return const Center(
+        title: Builder(
+          builder: (context) {
+            if (currentIndex == 1) {
+              return const Center(
                 child: Text(
-              'Dodaj zadanie',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ));
-          }
-          if (currentIndex == 2) {
-            return const Center(
+                  'Dodaj zadanie',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              );
+            }
+            if (currentIndex == 2) {
+              return const Center(
                 child: Text(
-              'Twój profil',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ));
-          }
-          return const Center(
+                  'Twój profil',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              );
+            }
+            return const Center(
               child: Text(
-            'Lista Zadań',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ));
-        }),
+                'Lista Zadań',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            );
+          },
+        ),
       ),
       body: BlocProvider(
         create: (context) => AddCubit(),

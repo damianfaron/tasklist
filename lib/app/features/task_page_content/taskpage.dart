@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
+import 'package:tasklist/app/features/task_page_content/cubit/task_cubit.dart';
 import 'package:tasklist/app/features/task_page_content/custom_container.dart';
 
 class TaskPageContent extends StatelessWidget {
@@ -10,18 +12,18 @@ class TaskPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance.collection('task').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            // print('Error fetching data: ${snapshot.error}');
+    return BlocProvider(
+      create: (context) => TaskCubit()..start(),
+      child: BlocBuilder<TaskCubit, TaskState>(
+        builder: (context, state) {
+          if (state.errorMessage.isNotEmpty) {
             return const Center(child: Text('Coś poszło nie tak'));
           }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: Text('trwa ładowanie'));
+          if (state.isLoading == true) {
+            return const Center(child: CircularProgressIndicator());
           }
 
-          final documents = snapshot.data!.docs;
+          final documents = state.documents;
 
           if (documents.isEmpty) {
             return const Center(
@@ -52,7 +54,6 @@ class TaskPageContent extends StatelessWidget {
                   confirmDismiss: (direction) async {
                     //możesz usunąć tylko przez swipe od prawej do lewej
                     // return direction == DismissDirection.endToStart;
-
                     // okno dialogowe z zapytaniem o usunięcie
                     return await showDialog(
                         context: context,
@@ -108,6 +109,10 @@ class TaskPageContent extends StatelessWidget {
               ],
             ],
           );
-        });
+
+       
+        },
+      ),
+    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasklist/app/features/add_page_content/add_page.dart';
+import 'package:tasklist/app/features/add_page_content/cubit/add_cubit.dart';
 import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
 import 'package:tasklist/app/features/task_page_content/taskpage.dart';
 import 'package:tasklist/app/features/user_page_content/user_page.dart';
@@ -43,19 +45,22 @@ class _HomePageState extends State<HomePage> {
           ));
         }),
       ),
-      body: Builder(builder: (context) {
-        if (currentIndex == 1) {
-          return AddPageContent(onSave: () {
-            setState(() {
-              currentIndex = 0;
+      body: BlocProvider(
+        create: (context) => AddCubit(),
+        child: Builder(builder: (context) {
+          if (currentIndex == 1) {
+            return AddPageContent(onSave: () {
+              setState(() {
+                currentIndex = 0;
+              });
             });
-          });
-        }
-        if (currentIndex == 2) {
-          return const UserPageContent();
-        }
-        return const TaskPageContent();
-      }),
+          }
+          if (currentIndex == 2) {
+            return const UserPageContent();
+          }
+          return const TaskPageContent();
+        }),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         //wyłączanie kreski nad przyciskiem
         // elevation: 0.0,

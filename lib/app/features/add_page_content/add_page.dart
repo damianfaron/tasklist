@@ -1,5 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasklist/app/features/add_page_content/cubit/add_cubit.dart';
 
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
@@ -75,10 +76,11 @@ class _AddPageContentState extends State<AddPageContent> {
             onPressed: taskName.isEmpty || descriptionTask.isEmpty
                 ? null
                 : () {
-                    FirebaseFirestore.instance.collection('task').add({
-                      'name': taskName,
-                      'description': descriptionTask,
-                    });
+                    context.read<AddCubit>().add(taskName, descriptionTask);
+                    // FirebaseFirestore.instance.collection('task').add({
+                    //   'name': taskName,
+                    //   'description': descriptionTask,
+                    // });
                     widget.onSave();
                   },
             child: const Text(

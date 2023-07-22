@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasklist/app/features/add_page_content/add_page.dart';
@@ -52,45 +53,51 @@ class _HomePageState extends State<HomePage> {
       ),
       body: BlocProvider(
         create: (context) => AddCubit(),
-        child: Builder(builder: (context) {
-          if (currentIndex == 1) {
-            return AddPageContent(onSave: () {
-              setState(() {
-                currentIndex = 0;
-              });
-            });
-          }
-          if (currentIndex == 2) {
-            return const UserPageContent();
-          }
-          return const TaskPageContent();
-        }),
+        child: Builder(
+          builder: (context) {
+            if (currentIndex == 1) {
+              return AddPageContent(
+                onSave: () {
+                  setState(
+                    () {
+                      currentIndex = 0;
+                    },
+                  );
+                },
+              );
+            }
+            if (currentIndex == 2) {
+              return const UserPageContent();
+            }
+            return const TaskPageContent();
+          },
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        //wyłączanie kreski nad przyciskiem
-        // elevation: 0.0,
-        backgroundColor: AppColors.mainColor,
-        currentIndex: currentIndex,
-        onTap: (newValue) {
-          setState(() {
-            currentIndex = newValue;
-          });
-        },
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: AppColors.navColor3,
+        buttonBackgroundColor: AppColors.navColor2,
+        color: AppColors.mainColor,
+        height: 50,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Zadania',
+          Icon(
+            Icons.home,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Dodaj',
+          Icon(
+            Icons.add,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profil',
-          )
+          Icon(
+            Icons.person_2_outlined,
+          ),
         ],
-        selectedItemColor: AppColors.blackColor,
+        animationDuration: const Duration(milliseconds: 200),
+        index: currentIndex,
+        onTap: (newIndex) {
+          setState(
+            () {
+              currentIndex = newIndex;
+            },
+          );
+        },
       ),
     );
   }

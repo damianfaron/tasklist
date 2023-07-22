@@ -38,7 +38,7 @@ class _AddPageContentState extends State<AddPageContent> {
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   width: 3,
-                  color: AppColors.lineColor,
+                  color: AppColors.navColor2,
                 ),
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -59,7 +59,7 @@ class _AddPageContentState extends State<AddPageContent> {
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
                   width: 3,
-                  color: AppColors.lineColor,
+                  color: AppColors.navColor2,
                 ),
                 borderRadius: BorderRadius.circular(30),
               ),

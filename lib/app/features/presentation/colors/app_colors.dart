@@ -7,4 +7,5 @@ class AppColors {
   static const Color navColor2 = Color.fromARGB(255, 153, 125, 154);
   static const Color lineColor = Color.fromARGB(80, 150, 87, 87);
   static const Color redColor = Colors.red;
+  static const Color navColor3 = Color.fromARGB(70, 214, 194, 216);
 }

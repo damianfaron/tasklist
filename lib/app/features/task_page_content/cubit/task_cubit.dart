@@ -44,6 +44,17 @@ class TaskCubit extends Cubit<TaskState> {
       });
   }
 
+  Future<void> deleteDocument(String documentId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('task')
+          .doc(documentId)
+          .delete();
+    } catch (error) {
+      emit(state);
+    }
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

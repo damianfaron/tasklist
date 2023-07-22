@@ -4,6 +4,7 @@ part of 'task_cubit.dart';
 class TaskState {
   final List<QueryDocumentSnapshot<Map<String, dynamic>>> documents;
   final bool isLoading;
+
   final String errorMessage;
 
   const TaskState({

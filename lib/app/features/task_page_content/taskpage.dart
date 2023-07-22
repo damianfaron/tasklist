@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasklist/app/features/presentation/colors/app_colors.dart';
@@ -96,10 +96,11 @@ class TaskPageContent extends StatelessWidget {
                             ));
                   },
                   onDismissed: (_) {
-                    FirebaseFirestore.instance
-                        .collection('task')
-                        .doc(document.id)
-                        .delete();
+                    context.read<TaskCubit>().deleteDocument(document.id);
+                    // FirebaseFirestore.instance
+                    //     .collection('task')
+                    //     .doc(document.id)
+                    //     .delete();
                   },
                   child: CustomContainer(
                     title: document['name'],
@@ -109,8 +110,6 @@ class TaskPageContent extends StatelessWidget {
               ],
             ],
           );
-
-       
         },
       ),
     );
